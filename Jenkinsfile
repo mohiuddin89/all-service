@@ -64,7 +64,7 @@ pipeline {
       steps {
         echo '***** DEPLOYING TO PRODUCTION SERVER *****'
         withCredentials([string(credentialsId: 'SERVERPASS', variable: 'SERVERPASS')]) {
-          sh "sshpass -p ${SERVERPASS} ssh -o StrictHostKeyChecking=no ubuntu@3.91.245.63 'docker-compose down && docker-compose up -d'"
+          sh "sshpass -p ${SERVERPASS} ssh -o StrictHostKeyChecking=no ubuntu@54.173.227.97 'docker-compose down && docker-compose up -d'"
         }
         echo '***** DEPLOYMENT IS COMPLETED FOR PRODUCTION SERVER *****'
       }
