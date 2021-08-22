@@ -31,7 +31,7 @@ pipeline {
         docker build -t mdmohiuddin/admin:01 .
         '''
         echo '***** DOCKER HUB *****'
-        withCredentials([usernamePassword(credentialsId: 'DHC', passwordVariable: 'DHPASS', usernameVariable: 'DHUSER')]) {
+        withCredentials([usernamePassword(credentialsId: 'DockerHubC', passwordVariable: 'DHPASS', usernameVariable: 'DHUSER')]) {
           sh "docker login -u ${DHUSER} -p ${DHPASS}"
         }
         echo '***** PUSHING IMAGES TO DOCKER HUB *****'
