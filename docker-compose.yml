@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+        auth:
+                image: mdohiuddin/auth:01
+                ports:
+                        - "5000:8000"
+        user:
+                image: mdmohiddin/user:01
+                ports:
+                        - "5001:3000"
+        task:
+                image: mdmohiddin/task:01
+                ports:
+                        - "5004:8000"
+        delivery:
+                image: mdmohiddin/delivery:01
+                ports:
+                        - "5006:3000"
+        attendance:
+                image: mdmohiddin/attendance:01
+                ports:
+                        - "5005:3000"
+        admin:
+                image: mdmohiddin/admin:01
+                ports:
+                        - "5003:8000"
+                depends_on:
+                        - "auth"
+                        - "user"
+                        - "task"
+                        - "delivery"
+                        - "attendance"
