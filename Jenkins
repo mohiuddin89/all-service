@@ -49,8 +49,8 @@ pipeline {
     stage('Deploy_To_TestServer') {
       steps {
         echo '***** DEPLOYING TO TEST SERVER *****'
-        withCredentials([string(credentialsId: 'PSP', variable: 'PSP')])    {
-          sh "sshpass -p ${PSP} ssh -o StrictHostKeyChecking=no ubuntu@3.90.231.192 'docker-compose down && docker-compose up -d'"
+        withCredentials([string(credentialsId: 'SERVERPASS', variable: 'SERVERPASS')])    {
+          sh "sshpass -p ${SERVERPASS} ssh -o StrictHostKeyChecking=no ubuntu@3.90.231.192 'docker-compose down && docker-compose up -d'"
         }
         echo '***** DEPLOYMENT IS DONE FOR TEST SERVER *****'
       }
@@ -63,8 +63,8 @@ pipeline {
       }
       steps {
         echo '***** DEPLOYING TO PRODUCTION SERVER *****'
-        withCredentials([string(credentialsId: 'PSP', variable: 'PSW')]) {
-          sh "sshpass -p ${PSP} ssh -o StrictHostKeyChecking=no ubuntu@3.91.245.63 'docker-compose down && docker-compose up -d'"
+        withCredentials([string(credentialsId: 'SERVERPASS', variable: 'SERVERPASS')]) {
+          sh "sshpass -p ${SERVERPASS} ssh -o StrictHostKeyChecking=no ubuntu@3.91.245.63 'docker-compose down && docker-compose up -d'"
         }
         echo '***** DEPLOYMENT IS COMPLETED FOR PRODUCTION SERVER *****'
       }
